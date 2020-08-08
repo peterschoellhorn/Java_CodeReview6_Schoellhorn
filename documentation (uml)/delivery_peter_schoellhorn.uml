@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>DATABASE</ID>
+  <OriginalElement>c89d4e1c-c3d2-4d49-8cab-bd89610d5c2d.SCHEMA:delivery_peter_schoellhorn</OriginalElement>
+  <nodes>
+    <node x="0.0" y="149.0">c89d4e1c-c3d2-4d49-8cab-bd89610d5c2d.TABLE:delivery_peter_schoellhorn.customers</node>
+    <node x="758.2090277777777" y="-21.999999999999986">c89d4e1c-c3d2-4d49-8cab-bd89610d5c2d.TABLE:delivery_peter_schoellhorn.delivery_company</node>
+    <node x="194.99999999999994" y="171.0">c89d4e1c-c3d2-4d49-8cab-bd89610d5c2d.TABLE:delivery_peter_schoellhorn.employees</node>
+    <node x="106.2520833333333" y="0.0">c89d4e1c-c3d2-4d49-8cab-bd89610d5c2d.TABLE:delivery_peter_schoellhorn.location_countries</node>
+    <node x="555.6361111111111" y="374.0">c89d4e1c-c3d2-4d49-8cab-bd89610d5c2d.TABLE:delivery_peter_schoellhorn.mail_offices</node>
+    <node x="800.2090277777777" y="392.0">c89d4e1c-c3d2-4d49-8cab-bd89610d5c2d.TABLE:delivery_peter_schoellhorn.delivery_status</node>
+    <node x="657.5166666666667" y="171.0">c89d4e1c-c3d2-4d49-8cab-bd89610d5c2d.TABLE:delivery_peter_schoellhorn.location_cities</node>
+    <node x="300.35416666666663" y="352.0">c89d4e1c-c3d2-4d49-8cab-bd89610d5c2d.TABLE:delivery_peter_schoellhorn.carrier</node>
+    <node x="357.10416666666663" y="565.0">c89d4e1c-c3d2-4d49-8cab-bd89610d5c2d.TABLE:delivery_peter_schoellhorn.mail_item</node>
+    <node x="321.66666666666674" y="56.66666666666674">c89d4e1c-c3d2-4d49-8cab-bd89610d5c2d.TABLE:delivery_peter_schoellhorn.emp_count</node>
+    <node x="407.0" y="149.0">c89d4e1c-c3d2-4d49-8cab-bd89610d5c2d.TABLE:delivery_peter_schoellhorn.fleet</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="c89d4e1c-c3d2-4d49-8cab-bd89610d5c2d.TABLE:delivery_peter_schoellhorn.mail_item" target="c89d4e1c-c3d2-4d49-8cab-bd89610d5c2d.TABLE:delivery_peter_schoellhorn.location_cities">
+      <point x="44.8125" y="-181.5" />
+      <point x="521.4166666666666" y="525.0" />
+      <point x="736.7090277777777" y="525.0" />
+      <point x="736.7090277777777" y="332.0" />
+      <point x="733.5166666666667" y="332.0" />
+      <point x="0.0" y="49.5" />
+    </edge>
+    <edge source="c89d4e1c-c3d2-4d49-8cab-bd89610d5c2d.TABLE:delivery_peter_schoellhorn.mail_offices" target="c89d4e1c-c3d2-4d49-8cab-bd89610d5c2d.TABLE:delivery_peter_schoellhorn.location_cities">
+      <point x="0.0" y="-49.5" />
+      <point x="625.6361111111111" y="332.0" />
+      <point x="703.1166666666667" y="332.0" />
+      <point x="-30.399999999999977" y="49.5" />
+    </edge>
+    <edge source="c89d4e1c-c3d2-4d49-8cab-bd89610d5c2d.TABLE:delivery_peter_schoellhorn.location_cities" target="c89d4e1c-c3d2-4d49-8cab-bd89610d5c2d.TABLE:delivery_peter_schoellhorn.location_countries">
+      <point x="0.0" y="-49.5" />
+      <point x="733.5166666666667" y="129.0" />
+      <point x="264.6520833333333" y="129.0" />
+      <point x="70.39999999999998" y="49.5" />
+    </edge>
+    <edge source="c89d4e1c-c3d2-4d49-8cab-bd89610d5c2d.TABLE:delivery_peter_schoellhorn.customers" target="c89d4e1c-c3d2-4d49-8cab-bd89610d5c2d.TABLE:delivery_peter_schoellhorn.location_countries">
+      <point x="0.0" y="-71.5" />
+      <point x="76.0" y="129.0" />
+      <point x="123.85208333333333" y="129.0" />
+      <point x="-70.4" y="49.5" />
+    </edge>
+    <edge source="c89d4e1c-c3d2-4d49-8cab-bd89610d5c2d.TABLE:delivery_peter_schoellhorn.delivery_company" target="c89d4e1c-c3d2-4d49-8cab-bd89610d5c2d.TABLE:delivery_peter_schoellhorn.location_cities">
+      <point x="0.0" y="-38.5" />
+      <point x="851.7090277777777" y="332.0" />
+      <point x="794.3166666666666" y="332.0" />
+      <point x="60.799999999999955" y="49.5" />
+    </edge>
+    <edge source="c89d4e1c-c3d2-4d49-8cab-bd89610d5c2d.TABLE:delivery_peter_schoellhorn.mail_item" target="c89d4e1c-c3d2-4d49-8cab-bd89610d5c2d.TABLE:delivery_peter_schoellhorn.carrier">
+      <point x="-14.9375" y="-181.5" />
+      <point x="461.66666666666663" y="515.0" />
+      <point x="387.85416666666663" y="515.0" />
+      <point x="0.0" y="71.5" />
+    </edge>
+    <edge source="c89d4e1c-c3d2-4d49-8cab-bd89610d5c2d.TABLE:delivery_peter_schoellhorn.mail_item" target="c89d4e1c-c3d2-4d49-8cab-bd89610d5c2d.TABLE:delivery_peter_schoellhorn.location_countries">
+      <point x="-74.6875" y="-181.5" />
+      <point x="401.91666666666663" y="535.0" />
+      <point x="162.49999999999994" y="535.0" />
+      <point x="162.49999999999994" y="129.0" />
+      <point x="159.05208333333331" y="129.0" />
+      <point x="-35.19999999999999" y="49.5" />
+    </edge>
+    <edge source="c89d4e1c-c3d2-4d49-8cab-bd89610d5c2d.TABLE:delivery_peter_schoellhorn.carrier" target="c89d4e1c-c3d2-4d49-8cab-bd89610d5c2d.TABLE:delivery_peter_schoellhorn.employees">
+      <point x="-21.875" y="-71.5" />
+      <point x="365.97916666666663" y="322.0" />
+      <point x="290.99999999999994" y="322.0" />
+      <point x="0.0" y="49.5" />
+    </edge>
+    <edge source="c89d4e1c-c3d2-4d49-8cab-bd89610d5c2d.TABLE:delivery_peter_schoellhorn.carrier" target="c89d4e1c-c3d2-4d49-8cab-bd89610d5c2d.TABLE:delivery_peter_schoellhorn.fleet">
+      <point x="21.875" y="-71.5" />
+      <point x="409.72916666666663" y="312.0" />
+      <point x="501.5" y="312.0" />
+      <point x="0.0" y="71.5" />
+    </edge>
+    <edge source="c89d4e1c-c3d2-4d49-8cab-bd89610d5c2d.TABLE:delivery_peter_schoellhorn.mail_item" target="c89d4e1c-c3d2-4d49-8cab-bd89610d5c2d.TABLE:delivery_peter_schoellhorn.mail_offices">
+      <point x="14.9375" y="-181.5" />
+      <point x="491.54166666666663" y="515.0" />
+      <point x="625.6361111111111" y="515.0" />
+      <point x="0.0" y="49.5" />
+    </edge>
+    <edge source="c89d4e1c-c3d2-4d49-8cab-bd89610d5c2d.TABLE:delivery_peter_schoellhorn.carrier" target="c89d4e1c-c3d2-4d49-8cab-bd89610d5c2d.TABLE:delivery_peter_schoellhorn.location_cities">
+      <point x="65.625" y="-71.5" />
+      <point x="453.47916666666663" y="322.0" />
+      <point x="672.7166666666667" y="322.0" />
+      <point x="-60.799999999999955" y="49.5" />
+    </edge>
+    <edge source="c89d4e1c-c3d2-4d49-8cab-bd89610d5c2d.TABLE:delivery_peter_schoellhorn.mail_item" target="c89d4e1c-c3d2-4d49-8cab-bd89610d5c2d.TABLE:delivery_peter_schoellhorn.delivery_status">
+      <point x="104.5625" y="-181.5" />
+      <point x="581.1666666666666" y="545.0" />
+      <point x="880.7090277777777" y="545.0" />
+      <point x="0.0" y="38.5" />
+    </edge>
+    <edge source="c89d4e1c-c3d2-4d49-8cab-bd89610d5c2d.TABLE:delivery_peter_schoellhorn.mail_item" target="c89d4e1c-c3d2-4d49-8cab-bd89610d5c2d.TABLE:delivery_peter_schoellhorn.customers">
+      <point x="-104.5625" y="-181.5" />
+      <point x="372.04166666666663" y="545.0" />
+      <point x="76.0" y="545.0" />
+      <point x="0.0" y="71.5" />
+    </edge>
+    <edge source="c89d4e1c-c3d2-4d49-8cab-bd89610d5c2d.TABLE:delivery_peter_schoellhorn.carrier" target="c89d4e1c-c3d2-4d49-8cab-bd89610d5c2d.TABLE:delivery_peter_schoellhorn.location_countries">
+      <point x="-65.625" y="-71.5" />
+      <point x="322.22916666666663" y="332.0" />
+      <point x="184.49999999999994" y="332.0" />
+      <point x="184.49999999999994" y="129.0" />
+      <point x="229.4520833333333" y="129.0" />
+      <point x="35.19999999999999" y="49.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="278.5" y="155.5" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Key columns</Category>
+    <Category>Columns</Category>
+    <Category>Virtual foreign keys</Category>
+  </Categories>
+</Diagram>
+

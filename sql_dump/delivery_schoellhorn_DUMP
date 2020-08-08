@@ -1,0 +1,343 @@
+-- MariaDB dump 10.17  Distrib 10.5.4-MariaDB, for Win64 (AMD64)
+--
+-- Host: 127.0.0.1    Database: delivery_peter_schoellhorn
+-- ------------------------------------------------------
+-- Server version	10.5.4-MariaDB
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `carrier`
+--
+
+DROP TABLE IF EXISTS `carrier`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `carrier` (
+  `CARRIER_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `VEHICLE_ID` int(11) NOT NULL,
+  `ASSIGNED_DRIVER` int(11) NOT NULL,
+  `CURRENT_CITY` int(11) DEFAULT NULL,
+  `CURRENT_COUNTRY` int(11) NOT NULL,
+  PRIMARY KEY (`CARRIER_ID`),
+  KEY `CURRENT_CITY` (`CURRENT_CITY`),
+  KEY `VEHICLE_ID` (`VEHICLE_ID`),
+  KEY `CURRENT_COUNTRY` (`CURRENT_COUNTRY`),
+  KEY `ASSIGNED_DRIVER` (`ASSIGNED_DRIVER`),
+  CONSTRAINT `carrier_ibfk_1` FOREIGN KEY (`CURRENT_CITY`) REFERENCES `location_cities` (`ZIP`),
+  CONSTRAINT `carrier_ibfk_2` FOREIGN KEY (`VEHICLE_ID`) REFERENCES `fleet` (`VEHICLE_ID`),
+  CONSTRAINT `carrier_ibfk_3` FOREIGN KEY (`CURRENT_COUNTRY`) REFERENCES `location_countries` (`COUNTRY_ID`),
+  CONSTRAINT `carrier_ibfk_4` FOREIGN KEY (`ASSIGNED_DRIVER`) REFERENCES `employees` (`EMP_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `carrier`
+--
+
+/*!40000 ALTER TABLE `carrier` DISABLE KEYS */;
+INSERT INTO `carrier` VALUES (3,2,1,2565,1),(4,1,2,2500,1),(5,3,3,47798,2);
+/*!40000 ALTER TABLE `carrier` ENABLE KEYS */;
+
+--
+-- Table structure for table `customers`
+--
+
+DROP TABLE IF EXISTS `customers`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `customers` (
+  `CUSTOMER_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `NAME` varchar(20) NOT NULL,
+  `ADDRESS` char(25) DEFAULT NULL,
+  `CUST_COUNTRY` int(11) NOT NULL,
+  `CUST_CITY` int(11) DEFAULT NULL,
+  PRIMARY KEY (`CUSTOMER_ID`),
+  KEY `CUST_COUNTRY` (`CUST_COUNTRY`),
+  CONSTRAINT `customers_ibfk_1` FOREIGN KEY (`CUST_COUNTRY`) REFERENCES `location_countries` (`COUNTRY_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=105 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `customers`
+--
+
+/*!40000 ALTER TABLE `customers` DISABLE KEYS */;
+INSERT INTO `customers` VALUES (101,'JOHN DOE','Rue John 33',3,69300),(102,'JANE DOE','Via JANE 32',4,118),(103,'MAX MUSTER','Ahornweg 3',2,74382),(104,'OTTO NORMAL','Ottomanenweg 2',1,1010);
+/*!40000 ALTER TABLE `customers` ENABLE KEYS */;
+
+--
+-- Table structure for table `delivery_company`
+--
+
+DROP TABLE IF EXISTS `delivery_company`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `delivery_company` (
+  `COMPANY_NAME` varchar(30) NOT NULL DEFAULT 'DELIVERY_PETER',
+  `COMPANY_ZIP` int(11) NOT NULL,
+  PRIMARY KEY (`COMPANY_NAME`),
+  KEY `COMPANY_ZIP` (`COMPANY_ZIP`),
+  CONSTRAINT `delivery_company_ibfk_3` FOREIGN KEY (`COMPANY_ZIP`) REFERENCES `location_cities` (`ZIP`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `delivery_company`
+--
+
+/*!40000 ALTER TABLE `delivery_company` DISABLE KEYS */;
+INSERT INTO `delivery_company` VALUES ('PETERS DELIVERY HEAD_OFFICE',1010);
+/*!40000 ALTER TABLE `delivery_company` ENABLE KEYS */;
+
+--
+-- Table structure for table `delivery_status`
+--
+
+DROP TABLE IF EXISTS `delivery_status`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `delivery_status` (
+  `STATUS_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `DESCRIPTION` varchar(15) NOT NULL,
+  PRIMARY KEY (`STATUS_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `delivery_status`
+--
+
+/*!40000 ALTER TABLE `delivery_status` DISABLE KEYS */;
+INSERT INTO `delivery_status` VALUES (1,'PICKED UP'),(2,'PROCESSING'),(3,'IN_DELIVERY'),(4,'DELIVERED');
+/*!40000 ALTER TABLE `delivery_status` ENABLE KEYS */;
+
+--
+-- Table structure for table `emp_count`
+--
+
+DROP TABLE IF EXISTS `emp_count`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `emp_count` (
+  `emp_count` int(11) NOT NULL,
+  PRIMARY KEY (`emp_count`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `emp_count`
+--
+
+/*!40000 ALTER TABLE `emp_count` DISABLE KEYS */;
+/*!40000 ALTER TABLE `emp_count` ENABLE KEYS */;
+
+--
+-- Table structure for table `employees`
+--
+
+DROP TABLE IF EXISTS `employees`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `employees` (
+  `EMP_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `FULL_NAME` varchar(30) NOT NULL,
+  `EMP_STATUS_ACTIVE` tinyint(1) DEFAULT 1,
+  PRIMARY KEY (`EMP_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `employees`
+--
+
+/*!40000 ALTER TABLE `employees` DISABLE KEYS */;
+INSERT INTO `employees` VALUES (1,'FABIAN BLESSING',1),(2,'PETER SCHOELLHORN',1),(3,'JAQUES ZACKZACK',1),(4,'JUPP BACH',0),(5,'JAN MUEHLSTEGEN',1),(6,'FABIO SALVO',0),(7,'ALEX PLANKOVSKI',1);
+/*!40000 ALTER TABLE `employees` ENABLE KEYS */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_unicode_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'IGNORE_SPACE,STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER increment_employee
+AFTER INSERT ON employees
+FOR EACH ROW
+UPDATE emp_count SET emp_count.emp_count = emp_count.emp_count+1 */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+
+--
+-- Table structure for table `fleet`
+--
+
+DROP TABLE IF EXISTS `fleet`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fleet` (
+  `VEHICLE_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `VEHICLE_YoM` year(4) NOT NULL,
+  `VEHICLE_STATUS` varchar(15) NOT NULL DEFAULT 'Operational',
+  `vehicle_model` varchar(25) NOT NULL,
+  `vehicle_total_km` mediumint(9) DEFAULT NULL,
+  PRIMARY KEY (`VEHICLE_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `fleet`
+--
+
+/*!40000 ALTER TABLE `fleet` DISABLE KEYS */;
+INSERT INTO `fleet` VALUES (1,2010,'Operational','FORD TRANSIT',123213),(2,2020,'Operational','MERCEDES Sprinter',12300),(3,2001,'Operational','FIAT DUCATO',248000),(4,2005,'non-operational','VW CADDY',153210);
+/*!40000 ALTER TABLE `fleet` ENABLE KEYS */;
+
+--
+-- Table structure for table `location_cities`
+--
+
+DROP TABLE IF EXISTS `location_cities`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `location_cities` (
+  `ZIP` int(11) NOT NULL,
+  `NAME` varchar(30) NOT NULL,
+  `COUNTRY` int(11) DEFAULT NULL,
+  PRIMARY KEY (`ZIP`),
+  KEY `COUNTRY` (`COUNTRY`),
+  CONSTRAINT `location_cities_ibfk_1` FOREIGN KEY (`COUNTRY`) REFERENCES `location_countries` (`COUNTRY_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `location_cities`
+--
+
+/*!40000 ALTER TABLE `location_cities` DISABLE KEYS */;
+INSERT INTO `location_cities` VALUES (1010,'VIENNA',1),(2500,'BADEN',1),(2565,'NEUHAUS',1),(24121,'BERGAMO',4),(31055,'KRAKAU',5),(47798,'KREFELD',2),(50667,'KOELN',2),(75000,'PARIS',3);
+/*!40000 ALTER TABLE `location_cities` ENABLE KEYS */;
+
+--
+-- Table structure for table `location_countries`
+--
+
+DROP TABLE IF EXISTS `location_countries`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `location_countries` (
+  `COUNTRY_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `NAME` varchar(25) NOT NULL,
+  `NO_OF_OFFICES` int(11) DEFAULT NULL,
+  PRIMARY KEY (`COUNTRY_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `location_countries`
+--
+
+/*!40000 ALTER TABLE `location_countries` DISABLE KEYS */;
+INSERT INTO `location_countries` VALUES (1,'Austria',2),(2,'Germany',2),(3,'France',1),(4,'Italy',1),(5,'Poland',1);
+/*!40000 ALTER TABLE `location_countries` ENABLE KEYS */;
+
+--
+-- Table structure for table `mail_item`
+--
+
+DROP TABLE IF EXISTS `mail_item`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `mail_item` (
+  `MAIL_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `SENDER_ADDRESS` varchar(30) NOT NULL,
+  `RECIEPIENT_ADDRESS` varchar(30) NOT NULL,
+  `DEPOSIT_DATE` timestamp NOT NULL DEFAULT current_timestamp(),
+  `DELIVERY_DATE` datetime DEFAULT NULL,
+  `STATUS` int(11) NOT NULL,
+  `item_CARRIER` int(11) DEFAULT NULL,
+  `FROM_CITY` int(11) DEFAULT NULL,
+  `TO_CITY` int(11) DEFAULT NULL,
+  `REMOTE_PICKUP_LOCATION` varchar(30) DEFAULT 'NONE - brought to post office',
+  `customer_info` int(11) NOT NULL,
+  `FROM_COUNTRY` int(11) NOT NULL,
+  `TO_COUNTRY` int(11) NOT NULL,
+  `DELIVERY_NOTICE` varchar(160) DEFAULT 'nothing',
+  `PROCESSING_OFFICE` int(11) DEFAULT NULL,
+  PRIMARY KEY (`MAIL_ID`),
+  KEY `FROM_CITY` (`FROM_CITY`),
+  KEY `TO_CITY` (`TO_CITY`),
+  KEY `STATUS` (`STATUS`),
+  KEY `customer_info` (`customer_info`),
+  KEY `FROM_COUNTRY` (`FROM_COUNTRY`),
+  KEY `TO_COUNTRY` (`TO_COUNTRY`),
+  KEY `PROCESSING_OFFICE` (`PROCESSING_OFFICE`),
+  KEY `item_CARRIER` (`item_CARRIER`),
+  CONSTRAINT `mail_item_ibfk_1` FOREIGN KEY (`FROM_CITY`) REFERENCES `location_cities` (`ZIP`),
+  CONSTRAINT `mail_item_ibfk_2` FOREIGN KEY (`TO_CITY`) REFERENCES `location_cities` (`ZIP`),
+  CONSTRAINT `mail_item_ibfk_3` FOREIGN KEY (`STATUS`) REFERENCES `delivery_status` (`STATUS_ID`),
+  CONSTRAINT `mail_item_ibfk_4` FOREIGN KEY (`customer_info`) REFERENCES `customers` (`CUSTOMER_ID`),
+  CONSTRAINT `mail_item_ibfk_5` FOREIGN KEY (`FROM_COUNTRY`) REFERENCES `location_countries` (`COUNTRY_ID`),
+  CONSTRAINT `mail_item_ibfk_6` FOREIGN KEY (`TO_COUNTRY`) REFERENCES `location_countries` (`COUNTRY_ID`),
+  CONSTRAINT `mail_item_ibfk_7` FOREIGN KEY (`PROCESSING_OFFICE`) REFERENCES `mail_offices` (`OFFICE_ID`),
+  CONSTRAINT `mail_item_ibfk_8` FOREIGN KEY (`item_CARRIER`) REFERENCES `carrier` (`CARRIER_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `mail_item`
+--
+
+/*!40000 ALTER TABLE `mail_item` DISABLE KEYS */;
+INSERT INTO `mail_item` VALUES (2,'test_ad1','delivery_add_dummy','2020-08-01 09:14:35','2020-08-01 15:14:48',4,3,2565,2500,'',104,1,1,'uebergeben an nachbar \"klaunix\"',1),(3,'test_ad2','delivery_add_dummy2','2020-08-02 05:15:16','2020-08-02 16:15:25',4,5,50667,47798,'',103,2,2,'nothing',5),(4,'test_ad3','delivery_add_dummy3','2020-08-07 18:15:09',NULL,2,NULL,75000,75000,'REMOTE Pick Up',101,3,3,'nothing',6),(5,'test_ad4','delivery_add_dummy4','2020-08-08 15:15:01',NULL,1,NULL,24121,24121,'REMOTE Pick Up',102,4,4,'nothing',7);
+/*!40000 ALTER TABLE `mail_item` ENABLE KEYS */;
+
+--
+-- Table structure for table `mail_offices`
+--
+
+DROP TABLE IF EXISTS `mail_offices`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `mail_offices` (
+  `OFFICE_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `ADDRESS` varchar(25) NOT NULL,
+  `OFFICE_ZIP` int(11) DEFAULT NULL,
+  PRIMARY KEY (`OFFICE_ID`),
+  KEY `OFFICE_ZIP` (`OFFICE_ZIP`),
+  CONSTRAINT `mail_offices_ibfk_1` FOREIGN KEY (`OFFICE_ZIP`) REFERENCES `location_cities` (`ZIP`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `mail_offices`
+--
+
+/*!40000 ALTER TABLE `mail_offices` DISABLE KEYS */;
+INSERT INTO `mail_offices` VALUES (0,'KARLSPLATZ 1',1010),(1,'HAUPTPLATZ 1',2565),(2,'RATHAUSGASSE 3',2500),(3,'VIA PIGNOLO 27',24121),(4,'PETERSTRASSE 143',47798),(5,'WALRAFPLATZ 5',50667),(6,'RUE ALEXANDRE PARODI 17',75000),(7,'MIODOWA 19',31055);
+/*!40000 ALTER TABLE `mail_offices` ENABLE KEYS */;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2020-08-08 22:49:41
